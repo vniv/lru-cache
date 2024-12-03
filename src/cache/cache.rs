@@ -65,20 +65,19 @@ where
             )));
         }
 
-        // Si le cache est déjà entièrement rempli, alors je supprime le dernier élément
+        // Si le cache est déjà entièrement rempli, alors je supprime le dernier élément récemment ajouté
         if self.values_order.len() == self.size {
             let oldest_key = self.values_order.remove(0);
             self.element.remove(&oldest_key);
         }
 
-        // Ajoutez le nouvel élément et mettez à jour l'ordre
+        // Ajoute le nouvel élément et sa key pour l'ordre
         self.values_order.push(key.clone());
         self.element.insert(key, value);
         Ok(())
     }
 
     /// Récupère une valeur associée à une clé
-    ///
     /// Retourne une erreur si la clé n'existe pas.
     ///
     /// # Exemple
